@@ -1,34 +1,23 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- */
+package entities;
 
-package Entities;
-
-/**
- * Clase base abstracta para las entidades del sistema.
- *
- * Propósito:
- * - Proporcionar campos comunes a todas las entidades (id, eliminado).
- * - Implementar el patrón de herencia para evitar duplicación de código.
- * - Mantener encapsulamiento, permitiendo acceso solo mediante getters/setters.
- * - Soportar eliminación lógica en lugar de eliminación física.
- */
+// Clase base que usan todas nuestras entidades para no repetir código
+// Es abstracta porque no queremos que se pueda crear un objeto "Base" directamente
+// Solo la usamos para heredar
 public abstract class Base {
+    private long id;           // Este id lo genera automáticamente la base de datos
+    private boolean eliminado; // Para la baja lógica - no borramos de verdad
 
-    // Atributos encapsulados
-    private long id;
-    private boolean eliminado;
-
-    // Constructor vacío
+    // Constructor vacío - lo necesitan algunos frameworks
     public Base() {}
 
-    // Constructor con parámetros
+    // Constructor completo - para cuando cargamos datos desde la base
     public Base(long id, boolean eliminado) {
         this.id = id;
         this.eliminado = eliminado;
     }
 
-    // Getters y Setters
+    // GETTERS Y SETTERS - forma segura de acceder a los atributos privados
+    
     public long getId() {
         return id;
     }
@@ -45,6 +34,7 @@ public abstract class Base {
         this.eliminado = eliminado;
     }
 
+    // toString() nos ayuda a debuggear - muestra el objeto como texto
     @Override
     public String toString() {
         return "id=" + id + ", eliminado=" + eliminado;

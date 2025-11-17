@@ -1,25 +1,24 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- */
-
-package Entities;
+package entities;
 
 import java.time.LocalDate;
 
+/**
+ * Clase SeguroVehicular (Clase B).
+ * CORREGIDA: Se elimina el campo 'idVehiculo' para garantizar
+ * la unidireccionalidad pura (A -> B).
+ */
 public class SeguroVehicular extends Base {
-
-    // Atributos privados
+    
     private String aseguradora;
     private String nroPoliza;
     private Cobertura cobertura;
     private LocalDate vencimiento;
-   
+    
+    // ELIMINADO: private long idVehiculo; 
+    // La FK se maneja solo en la capa DAO/Service
 
-
-    // Constructor vacío
     public SeguroVehicular() {}
 
-    // Constructor con parámetros
     public SeguroVehicular(long id, boolean eliminado, String aseguradora, String nroPoliza, Cobertura cobertura, LocalDate vencimiento) {
         super(id, eliminado);
         this.aseguradora = aseguradora;
@@ -28,7 +27,8 @@ public class SeguroVehicular extends Base {
         this.vencimiento = vencimiento;
     }
 
-    // Getters y Setters
+    // --- Getters y Setters ---
+
     public String getAseguradora() {
         return aseguradora;
     }
@@ -57,20 +57,25 @@ public class SeguroVehicular extends Base {
         return vencimiento;
     }
 
+    /**
+     * Setter para el vencimiento (LocalDate).
+     * @param vencimiento La fecha de vencimiento.
+     */
     public void setVencimiento(LocalDate vencimiento) {
         this.vencimiento = vencimiento;
     }
 
-@Override
-public String toString() {
-    return "SeguroVehicular {\n" +
-            "  id=" + getId() + ",\n" +
-            "  eliminado=" + isEliminado() + ",\n" +
-            "  aseguradora='" + aseguradora + "',\n" +
-            "  nroPoliza='" + nroPoliza + "',\n" +
-            "  cobertura=" + (cobertura != null ? cobertura : "sin cobertura") + ",\n" +
-            "  vencimiento=" + (vencimiento != null ? vencimiento : "sin fecha") + "\n" +
-            '}';
-}
-}
+    // ELIMINADOS: getIdVehiculo(), setIdVehiculo()
 
+    @Override
+    public String toString() {
+        return "SeguroVehicular{" +
+                "id=" + getId() +
+                ", aseguradora='" + aseguradora + '\'' +
+                ", nroPoliza='" + nroPoliza + '\'' +
+                ", cobertura=" + cobertura +
+                ", vencimiento=" + vencimiento +
+                ", eliminado=" + isEliminado() +
+                '}';
+    }
+}

@@ -1,30 +1,17 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- */
+package entities;
 
-package Entities;
-
-/**
- * Clase que representa un vehículo dentro del sistema.
- *
- * Propósito:
- * - Modelar los datos básicos de un vehículo.
- * - Heredar de la clase Base los campos comunes (id y eliminado).
- * - Aplicar encapsulamiento mediante atributos privados y métodos de acceso.
- */
 public class Vehiculo extends Base {
-
-    // Atributos privados
+    
     private String dominio;
     private String marca;
     private String modelo;
     private int anio;
     private String nroChasis;
-    private SeguroVehicular seguro;//indica que cada vehículo puede tener un solo seguro asociado.
-    // Constructor vacío
+    
+    private SeguroVehicular seguro;
+
     public Vehiculo() {}
 
-    // Constructor con parámetros
     public Vehiculo(long id, boolean eliminado, String dominio, String marca, String modelo, int anio, String nroChasis) {
         super(id, eliminado);
         this.dominio = dominio;
@@ -33,15 +20,9 @@ public class Vehiculo extends Base {
         this.anio = anio;
         this.nroChasis = nroChasis;
     }
-    // Relación 1..1 unidireccional con SeguroVehicular
-    public SeguroVehicular getSeguro() {
-    return seguro;
-}
 
-    public void setSeguro(SeguroVehicular seguro) {
-    this.seguro = seguro;
-}
-    // Getters y Setters
+    // --- Getters y Setters ---
+
     public String getDominio() {
         return dominio;
     }
@@ -82,20 +63,35 @@ public class Vehiculo extends Base {
         this.nroChasis = nroChasis;
     }
 
-@Override
-public String toString() {
-    return "Vehiculo {\n" +
-            "  id=" + getId() + ",\n" +
-            "  eliminado=" + isEliminado() + ",\n" +
-            "  dominio='" + dominio + "',\n" +
-            "  marca='" + marca + "',\n" +
-            "  modelo='" + modelo + "',\n" +
-            "  anio=" + anio + ",\n" +
-            "  nroChasis='" + nroChasis + "',\n" +
-            "  seguro=" + (seguro != null ? seguro.getNroPoliza() : "sin seguro") + "\n" +
-            '}';
-}
+    public SeguroVehicular getSeguro() {
+        return seguro;
+    }
 
+    public void setSeguro(SeguroVehicular seguro) {
+        this.seguro = seguro;
+    }
 
- 
+    /**
+     * toString() corregido sin acentos.
+     */
+    @Override
+    public String toString() {
+        String infoSeguro;
+        if (seguro != null) {
+            infoSeguro = "seguro=Poliza Nro. " + seguro.getNroPoliza() + " (ID: " + seguro.getId() + ")";
+        } else {
+            infoSeguro = "seguro=sin seguro asociado";
+        }
+        
+        return "Vehiculo{" +
+                "id=" + getId() +
+                ", dominio='" + dominio + '\'' +
+                ", marca='" + marca + '\'' +
+                ", modelo='" + modelo + '\'' +
+                ", ano=" + anio + // Corregido a 'ano'
+                ", nroChasis='" + nroChasis + '\'' +
+                ", " + infoSeguro +
+                ", eliminado=" + isEliminado() +
+                '}';
+    }
 }
