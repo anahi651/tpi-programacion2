@@ -1,5 +1,7 @@
 # TPI Programación II – Gestión de Vehículos y Seguros
 
+> 🎥 **Video de Presentación y Defensa:** [Ver en YouTube](https://youtu.be/xJKxRyQOSDM)
+
 Sistema de consola (Java + MySQL) que gestiona vehículos (Entidad A) y seguros vehiculares (Entidad B) en una relación 1–1 con operaciones transaccionales compuestas (crear / actualizar / eliminar A junto con B) y CRUD independiente para B. Incluye validaciones de negocio, unicidad lógica, bajas lógicas y búsquedas por campo clave.
 
 ## 1. Prerrequisitos
